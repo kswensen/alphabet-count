@@ -1,28 +1,75 @@
-.App {
+.header {
+  width: 100%;
+  height: 10vh;
+  background-color: grey;
+  border-bottom: 3px solid black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: Helvetica, sans-serif;
+}
+
+.header h4{
+  font-size: 40px;
+  width: 80%;
   text-align: center;
+  padding-left: 15%;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.header p{
+  font-size: 30px;
+  width: 20%;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
+.search {
+  height: 20vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search textarea {
+  width: 20vw;
+  height: auto;
+  margin-right: 10px;
+  font-size: 20px;
+  font-family: Helvetica, sans-serif;  
+}
+
+.search button {
+  height: 5vh;
+  width: 5vw;
+}
+
+.body {
+  height: 64vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
   padding: 20px;
-  color: white;
 }
 
-.App-title {
-  font-size: 1.5em;
+.tiles {
+  height: 15vh;
+  width: 5vw;
+  background-color: lightgrey;
+  border: 3px solid black;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15px;
+  font-family: Helvetica, sans-serif;
 }
 
-.App-intro {
-  font-size: large;
+.tiles h1 {
+  font-size: 30px;
+  font-style: bold;
+  border-bottom: 3px solid black;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.tiles h4 {
+  font-size: 30px;
 }

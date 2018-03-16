@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './reset.css';
 import './App.css';
 
 class App extends Component {
@@ -10,9 +11,9 @@ class App extends Component {
     }
   }
 
-  countAlphabet(string){
+  countAlphabet(string) {
     string.toLowerCase().split('').map((letter, index) => {
-      if(this.state.counts.hasOwnProperty(letter)){
+      if (this.state.counts.hasOwnProperty(letter)) {
         this.setState({
           index: this.state.counts[letter]++
         })
@@ -22,16 +23,22 @@ class App extends Component {
         });
       }
     })
-  return this.state.counts
+    return this.state.counts
   }
 
-  reset(){
-    for(let letter in this.state.counts){
-      if(!letter.match(/^[!@#\$%\^\&*\)\(+=._-]+$/g)){
-        this.setState({
-          letter: this.state.counts[letter] = 0,
-          input: ""
-        })
+  reset() {
+    for (let letter in this.state.counts) {
+      if (!letter.match(/^[!@#\s\$%\^\&*\)\(+=,:;'"? ._-]+$/g)) {
+        if (letter === 'Space') {
+          this.setState({
+            letter: delete this.state.counts[letter]
+          })
+        } else {
+          this.setState({
+            letter: this.state.counts[letter] = 0,
+            input: ""
+          })
+        }
       } else {
         this.setState({
           letter: delete this.state.counts[letter]
@@ -42,19 +49,26 @@ class App extends Component {
 
   render() {
     const mappedLetters = Object.entries(this.state.counts).map(([letter, count], i) => {
-      return <ul key={i}>
-        <h4>{letter}</h4>
+      if(letter === " "){
+        letter = "Space";
+      }
+      return <ul key={i} className="tiles">
+        <h1>{letter.toUpperCase()}</h1>
         <h4>{count}</h4>
       </ul>
     })
     return (
-      <div className="App">
-        <div className="inputBox">
-          <input className="input" value={this.state.input} onChange={(e) => this.setState({input: e.target.value})}></input>
+      <div>
+        <div className="header">
+          <h4>Alphabet Counter</h4>
+          <p>Coded in React</p>
+        </div>
+        <div className="search">
+          <textarea className="input" value={this.state.input} onChange={(e) => this.setState({ input: e.target.value })}></textarea>
           <button className="submitButton" onClick={() => this.countAlphabet(this.state.input)}>Submit</button>
           <button className="resetButton" onClick={() => this.reset()}>Reset</button>
         </div>
-        <div className='display'>{mappedLetters}</div>
+        <div className='body'>{mappedLetters}</div>
       </div>
     );
   }
